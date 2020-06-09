@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 
 const postMail = (req, res) => {
-  let info;
-  let info2;
 	async function main() {
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
@@ -21,14 +19,14 @@ const postMail = (req, res) => {
       },
     });
     // send mail with defined transport object
-    info = await transporter.sendMail({
+    let info = await transporter.sendMail({
       from: 'webdev@jim-tisdale.com', // sender address
       to: `webdev@jim-tisdale.com`, // list of receivers
       subject: `${req.body.name}.`, // Subject line
       text: req.body.message, // plain text body
       html: req.body.message, // html body
     });
-    info2 = await transporter.sendMail({
+    let info2 = await transporter.sendMail({
       from: 'webdev@jim-tisdale.com', // sender address
       to: `${req.body.email}`, // list of receivers
       subject: `${req.body.name}, Thanks for reaching out!`, // Subject line
@@ -50,27 +48,8 @@ const postMail = (req, res) => {
     email: req.body.email,
     message: req.body.message
   }
-  let obj2 = {
-    _id: mongoose.Types.ObjectId(),
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message
-  }
   let newMail = new Mail(obj);
-  let newMail2 = new Mail(obj2);
   newMail.save((err,edu) =>{
-    if(err) {
-      res.status(400).send({
-        message: `Fail on new project ${err}`
-      })
-    }
-    else {
-      res.status(200).json({
-        message: "Thank you!"
-      });
-    }
-  })
-  newMail2.save((err,edu) =>{
     if(err) {
       res.status(400).send({
         message: `Fail on new project ${err}`

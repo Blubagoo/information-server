@@ -9,8 +9,7 @@ const eduSchema = mongoose.Schema({
 	date: [{
 		start: String,
 		end: String
-	}],
-	bulletPoints: Array
+	}]
 });
 
 const Education = mongoose.model('Education', eduSchema);

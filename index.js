@@ -47,18 +47,19 @@ app.get('/', (req, res) => {
 function runServer(databaseUrl, port = PORT) {
   console.log('starting server');
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
-      if (err) {
-        return reject(err);
-      }
+    mongoose.connect(databaseUrl, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true
+    })
+    .then(() => {
       server = app.listen(PORT , () => {
         console.log(`Your app is listening on portssss ${PORT}`);
         resolve();
-      })
-        .on('error', err => {
-          mongoose.disconnect();
-          reject(err);
-        });
+      });
+    })
+    .catch(error => {
+      handleError(error);
+      mongoose.disconnect();
     });
   });
 }
@@ -78,7 +79,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-    runServer("mongodb+srv://adminix:Joedanger02@jim-info-eny4i.gcp.mongodb.net/test").catch(err => console.error(err));
+    runServer("mongodb+srv://adminix:Joedanger02@jim-info-eny4i.gcp.mongodb.net/jim-info").catch(err => console.error(err));
   };
 
 module.exports = {

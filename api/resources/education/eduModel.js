@@ -2,17 +2,17 @@
 
 const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
-
 const eduSchema = mongoose.Schema({
+	_id: mongoose.Types.ObjectId,
 	company: String,
 	info: String,
 	date: [{
 		start: String,
 		end: String
-	}]
+	}],
+	bulletPoints: Array
 });
 
 const Education = mongoose.model('Education', eduSchema);
 
-module.exports = {Education};
+module.exports = { Education };

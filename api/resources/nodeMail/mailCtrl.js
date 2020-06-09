@@ -12,7 +12,7 @@ const postMail = (req, res) => {
     let transporter = nodemailer.createTransport({
       host: "smtp-pulse.com",
       port: 2525,
-      secure: true,
+      secure: false,
       auth: {
         user: 'jctisdale1988@gmail.com',
         pass: 'eLacJcT5Y3B2Fp',

@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 var corsOptions = {
-  origin: 'https://www.jim-tisdale.com',
+  origin: 'https://blu-ink-innovation.herokuapp.com/',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 

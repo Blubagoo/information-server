@@ -23,8 +23,8 @@ const postMail = (req, res) => {
       from: 'webdev@jim-tisdale.com', // sender address
       to: `webdev@jim-tisdale.com`, // list of receivers
       subject: `${req.body.name}.`, // Subject line
-      text: req.body.message, // plain text body
-      html: req.body.message, // html body
+      text: `${req.body.message}`, // plain text body
+      html: `${req.body.message}`, // html body
     });
     let info2 = await transporter.sendMail({
       from: 'webdev@jim-tisdale.com', // sender address

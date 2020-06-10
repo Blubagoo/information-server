@@ -10,7 +10,9 @@ const expSchema = mongoose.Schema({
 		start: String,
 		end: String
 	}],
-	bulletPoints: Array
+	bulletPoints: [
+		String
+	]
 });
 
 const Experience = mongoose.model('Experience', expSchema);

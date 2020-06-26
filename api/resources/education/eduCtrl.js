@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 
 
-function getEducation(req,res) {
+const getEducation = (req,res) => {
 	return Education.find({})
     .then(users => res.json({entries: users}))
     .catch(err => res.status(500).json({message: `${err}`}));
@@ -26,6 +26,7 @@ const postEducation = (req,res) => {
 			res.status(200).json();
 		}
 	})
+
 
 }
 module.exports = { getEducation, postEducation };
